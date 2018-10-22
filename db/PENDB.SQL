@@ -25,15 +25,6 @@ INSERT INTO MontoPrestamo (mon_mon) VALUES
 	('8000'),
 	('9000'),
 	('10000');
-CREATE TABLE TipoPrestamo(
-	id_tpp int PRIMARY KEY AUTO_INCREMENT,
-	tpp_tpp VARCHAR(30) NOT NULL,
-	des_tpp VARCHAR(50) NOT NULL
-);
-INSERT INTO TipoPrestamo(tpp_tpp,des_tpp)VALUES
-	('Exprees','15 dias para pagar'),
-	('VIP','30 dias para pagar');
-
 CREATE TABLE Usuario(
 	id_usu int PRIMARY KEY AUTO_INCREMENT,
 	id_tus int NOT NULL,
@@ -75,18 +66,12 @@ CREATE TABLE Gerente(
 );
 CREATE TABLE Prestamo(
 	id_pre int PRIMARY KEY AUTO_INCREMENT,
-	id_tpp int NOT NULL,
 	fec_ini DATE NOT NULL,
+	fec_fin DATE NOT NULL,
 	id_mon int NOT NULL,
-	FOREIGN KEY(id_mon)REFERENCES MontoPrestamo(id_mon),
-	FOREIGN KEY(id_tpp)REFERENCES TipoPrestamo(id_tpp)	
-);
-CREATE TABLE PrestamoenCliente(
-	id_ptu int PRIMARY KEY AUTO_INCREMENT,
 	id_cli int NOT NULL,
-	id_pre int NOT NULL,
-	FOREIGN KEY(id_cli)REFERENCES Cliente(id_cli),
-	FOREIGN KEY(id_pre)REFERENCES Prestamo(id_pre)
+	FOREIGN KEY(id_mon)REFERENCES MontoPrestamo(id_mon),
+	FOREIGN key(id_cli)REFERENCES Cliente(id_cli)	
 );
 
 CREATE TABLE HistorialPagosContinuos(
@@ -105,6 +90,11 @@ CREATE TABLE Jerarquia(
 	FOREIGN KEY(id_ger)REFERENCES Gerente(id_ger),
 	FOREIGN KEY(id_ase)REFERENCES Asesor(id_ase)
 );
+
+
+
+
+
 
 
 
